@@ -1,1 +1,1 @@
-java -cp target/classes:target/dependency/* PrincipalLOC
+java -cp target/classes:target/dependency/* -cp target/classes/edu/uniandes/ecos/locPrincipalLOC
