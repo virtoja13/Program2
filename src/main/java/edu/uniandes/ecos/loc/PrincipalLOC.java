@@ -5,6 +5,7 @@
  */
 package edu.uniandes.ecos.loc;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -30,18 +31,17 @@ public class PrincipalLOC extends HttpServlet {
     }
     
     private void mostrarLineas(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
-        HashMap<String,String>  map = new HashMap<String,String>();
         Contador contador = new Contador();
-        map = (HashMap<String, String>)contador.lineasArvhivos(ruta);
-        Iterator iterator = map.entrySet().iterator();
+        ArrayList<DatosClase> listaDatosClase = contador.lineasArvhivos(ruta);
+        Iterator iterator = listaDatosClase.iterator();
         while(iterator.hasNext()){
-            Map.Entry entry = (Map.Entry) iterator.next();
-            resp.getWriter().println("Clase: "+entry.getKey() + ". Numero lineas: "+entry.getValue());
+            DatosClase dc = (DatosClase) iterator.next();
+            resp.getWriter().println("Clase: "+dc.getNombreClase() + ". Numero lineas: "+dc.getNumeroLineas() + ". Numero metodos: " + dc.getNumeroMetodos());
         }
     }
     
     public static void main(String[] args) throws Exception{
-        Server server = new Server(8080);
+        Server server = new Server(Integer.valueOf(System.getenv("PORT")));
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/");
         server.setHandler(context);
@@ -50,3 +50,5 @@ public class PrincipalLOC extends HttpServlet {
         server.join();
     }     
 }
+
+//Error de cast con iterator si hacer next

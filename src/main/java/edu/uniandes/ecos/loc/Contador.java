@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -21,24 +22,30 @@ import java.util.logging.Logger;
  */
 public class Contador {
     
-    public Map lineasArvhivos(String ruta){
-        Map<String,String> lineasXArchivo = new HashMap();
+    public ArrayList<DatosClase> lineasArvhivos(String ruta){
         HashMap<String,String> listaClases = new HashMap<String,String>();
+        ArrayList<DatosClase> listaDatosClase = new ArrayList<DatosClase>();
         RecorrerPrograma.obtenerArchivosJava(ruta, listaClases);
         try {
             Iterator iterator = listaClases.entrySet().iterator();
             while(iterator.hasNext()){
                 Map.Entry entry = (Map.Entry) iterator.next();
                 long numeroLineas = 0;
+                int numeroMetodos = 0;
                 FileReader fr = new FileReader((String)entry.getValue());
                 BufferedReader bf = new BufferedReader(fr);
                 String linea = bf.readLine();
                 while(linea!=null) {
+                    //Numero de lineas en la clase
                     if(!linea.trim().equals(""))
                         numeroLineas++;
+                    //Numero de metodos de la clase
+                    if((linea.contains("public")||linea.contains("private")||linea.contains("protected"))&& linea.contains("(") && linea.contains(")") && linea.contains("{"))
+                        numeroMetodos++;
                     linea = bf.readLine();
                 }
-                lineasXArchivo.put((String) entry.getKey(), String.valueOf(numeroLineas));
+                DatosClase datosClase = new DatosClase((String) entry.getKey(), numeroLineas, numeroMetodos);
+                listaDatosClase.add(datosClase);
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Contador.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,7 +53,7 @@ public class Contador {
         catch (IOException ex) {
             Logger.getLogger(Contador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return lineasXArchivo;
+        return listaDatosClase;
     }
     
 }
