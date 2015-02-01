@@ -1,1 +1,1 @@
-web:    java -cp target/classes:target/dependency/* -cp target/classes/edu/uniandes/ecos/locPrincipalLOC
+web:    java -cp target/classes:target/dependency/* edu/uniandes/ecos/locMain
