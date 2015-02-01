@@ -39,7 +39,6 @@ public class Contador {
                     linea = bf.readLine();
                 }
                 lineasXArchivo.put((String) entry.getKey(), String.valueOf(numeroLineas));
-                System.out.println("Clase: "+entry.getKey()+". Numero de lineas: "+numeroLineas);
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Contador.class.getName()).log(Level.SEVERE, null, ex);

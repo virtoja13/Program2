@@ -6,6 +6,8 @@
 package edu.uniandes.ecos.loc;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +26,18 @@ public class PrincipalLOC extends HttpServlet {
         
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
-        HashMap<String,String>  list = new HashMap<String,String>();
+        mostrarLineas(req, resp);
+    }
+    
+    private void mostrarLineas(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+        HashMap<String,String>  map = new HashMap<String,String>();
         Contador contador = new Contador();
-        contador.lineasArvhivos(ruta);
+        map = (HashMap<String, String>)contador.lineasArvhivos(ruta);
+        Iterator iterator = map.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry entry = (Map.Entry) iterator.next();
+            resp.getWriter().println("Clase: "+entry.getKey() + ". Numero lineas: "+entry.getValue());
+        }
     }
     
     public static void main(String[] args) throws Exception{
