@@ -20,8 +20,6 @@ import org.eclipse.jetty.servlet.ServletHolder;
  * @author JAVIER
  */
 public class PrincipalLOC extends HttpServlet {
-
-    private static String ruta = "C:\\Users\\JAVIER\\Dropbox\\ANDES\\ECOS\\PrimerSemestre\\ConceptosAvanzadosIngSoftware\\Tareas\\Tarea2\\PSP01\\program2\\src";
         
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
@@ -30,7 +28,7 @@ public class PrincipalLOC extends HttpServlet {
     
     private void mostrarLineas(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
         Contador contador = new Contador();
-        ArrayList<DatosClase> listaDatosClase = contador.lineasArvhivos(ruta);
+        ArrayList<DatosClase> listaDatosClase = contador.lineasArvhivos(System.getProperty("user.dir")+"\\src");
         Iterator iterator = listaDatosClase.iterator();
         while(iterator.hasNext()){
             DatosClase dc = (DatosClase) iterator.next();
