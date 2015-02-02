@@ -28,7 +28,7 @@ public class PrincipalLOC extends HttpServlet {
     
     private void mostrarLineas(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
         Contador contador = new Contador();
-        ArrayList<DatosClase> listaDatosClase = contador.lineasArvhivos(System.getProperty("user.dir")+"\\src");
+        ArrayList<DatosClase> listaDatosClase = contador.lineasArvhivos("src");
         Iterator iterator = listaDatosClase.iterator();
         while(iterator.hasNext()){
             DatosClase dc = (DatosClase) iterator.next();
