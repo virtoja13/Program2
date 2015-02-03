@@ -5,6 +5,7 @@
  */
 package edu.uniandes.ecos.loc;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.servlet.ServletException;
@@ -30,10 +31,27 @@ public class PrincipalLOC extends HttpServlet {
         Contador contador = new Contador();
         ArrayList<DatosClase> listaDatosClase = contador.lineasArvhivos("src");
         Iterator iterator = listaDatosClase.iterator();
+        PrintWriter out = resp.getWriter();
+        out.println("<html>");
+        out.println("<body>");
+        out.println("<table border='1'>");
+        out.println("<tr>");
+        out.println("<th>Nombre Clase</th>");
+        out.println("<th>Numero Lineas</th>");
+        out.println("<th>Numero Metodos</th>");
+        out.println("</tr>");
         while(iterator.hasNext()){
             DatosClase dc = (DatosClase) iterator.next();
-            resp.getWriter().println("Clase: "+dc.getNombreClase() + ". Numero lineas: "+dc.getNumeroLineas() + ". Numero metodos: " + dc.getNumeroMetodos());
+            out.println("<tr align='center'>");
+            out.println("<td>"+dc.getNombreClase()+"</td>");
+            out.println("<td>"+dc.getNumeroLineas()+"</td>");
+            out.println("<td>"+dc.getNumeroMetodos()+"</td>");
+            out.println("</tr>");
         }
+        out.println("</table>");
+        out.println("</body>");
+        out.println("</html>");
+        resp.getWriter().print(out);
     }
     
     public static void main(String[] args) throws Exception{
