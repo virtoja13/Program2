@@ -1,8 +1,8 @@
 /*
-*Clase para contar las lineas y metodos de una clase
-*@author: José Javier Virviescas Toledo
-*@version: 1.0
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.uniandes.ecos.loc;
 
 import java.io.BufferedReader;
@@ -15,6 +15,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author JAVIER
+ */
 public class Contador {
     
     public ArrayList<DatosProyecto> conteoArchivos(String ruta){

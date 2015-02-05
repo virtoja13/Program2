@@ -1,10 +1,14 @@
 /*
-*Clase que representa los datos de una clase
-*@author: José Javier Virviescas Toledo
-*@version: 1.0
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.uniandes.ecos.loc;
 
+/**
+ *
+ * @author JAVIER
+ */
 public class DatosClase {
     
     private String NombreClase;

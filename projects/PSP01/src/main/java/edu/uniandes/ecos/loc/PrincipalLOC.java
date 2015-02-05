@@ -1,10 +1,9 @@
 /*
-*Clase principal del programa que cuenta las lienas de codigo
-*@author: José Javier Virviescas Toledo
-*@version: 1.0
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package edu.uniandes.ecos.loc;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -16,6 +15,10 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
+/**
+ *
+ * @author JAVIER
+ */
 public class PrincipalLOC extends HttpServlet {
         
     @Override
@@ -68,3 +71,5 @@ public class PrincipalLOC extends HttpServlet {
         server.join();
     }     
 }
+
+//Error de cast con iterator si hacer next
